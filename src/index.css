@@ -1,0 +1,595 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+/* Ensure proper text wrapping and prevent overflow */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Ensure all text content respects boundaries */
+p, div, span, h1, h2, h3, h4, h5, h6, li, td, th {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* Prevent code blocks from overflowing */
+.mathematical-content, code, pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Force long mathematical expressions to wrap */
+.math-display, .math-inline {
+  overflow-wrap: break-word;
+  word-break: break-all;
+  max-width: 100%;
+}
+
+/* Ensure tables don't overflow */
+table {
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+/* Fix button text wrapping */
+button, .button {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+:root {
+  /* Clean, professional color scheme with subtle quantum inspiration */
+  --background: oklch(0.995 0.003 240);
+  --foreground: oklch(0.15 0.05 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.02 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.02 240);
+  --primary: oklch(0.25 0.15 260); /* Deep quantum blue */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.01 240);
+  --secondary-foreground: oklch(0.25 0.05 240);
+  --muted: oklch(0.97 0.008 240);
+  --muted-foreground: oklch(0.45 0.02 240);
+  --accent: oklch(0.65 0.25 35); /* Scientific gold */
+  --accent-foreground: oklch(0.15 0.05 240);
+  --destructive: oklch(0.55 0.2 15);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.92 0.005 240);
+  --input: oklch(0.92 0.005 240);
+  --ring: oklch(0.25 0.15 260);
+  --radius: 0.5rem;
+
+  /* Scientific purple for theoretical sections */
+  --scientific-purple: oklch(0.3 0.15 290);
+  --scientific-purple-foreground: oklch(1 0 0);
+  
+  /* Very subtle gradient variables */
+  --quantum-gradient-1: oklch(0.998 0.002 240);
+  --quantum-gradient-2: oklch(0.996 0.004 260);
+  --quantum-gradient-3: oklch(0.998 0.002 280);
+  --quantum-gradient-4: oklch(0.996 0.005 300);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
+  --radius-2xl: calc(var(--radius) * 3);
+  --radius-full: 9999px;
+  
+  --color-scientific-purple: var(--scientific-purple);
+  --color-scientific-purple-foreground: var(--scientific-purple-foreground);
+}
+
+/* Mathematical typography enhancements */
+.mathematical-content {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  background: oklch(0.99 0.01 260);
+  border: 1px solid oklch(0.9 0.02 260);
+  border-radius: var(--radius);
+  padding: 16px;
+  overflow-x: auto;
+  position: relative;
+}
+
+.mathematical-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    oklch(0.25 0.15 260), 
+    oklch(0.3 0.15 290)
+  );
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+/* Enhanced prose styling */
+.prose {
+  max-width: none;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose em {
+  font-style: italic;
+  color: oklch(0.3 0.15 290);
+}
+
+/* Spectral tautology emphasis */
+.spectral-emphasis {
+  background: linear-gradient(135deg, 
+    oklch(0.25 0.15 260 / 0.1),
+    oklch(0.3 0.15 290 / 0.15),
+    oklch(0.65 0.25 35 / 0.1)
+  );
+  border: 1px solid oklch(0.25 0.15 260 / 0.2);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+/* Enhanced navigation and layout */
+.navigation-container {
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.88 0.01 240) transparent;
+  width: 100%;
+  max-width: 320px; /* Increased max width but still constrained */
+  /* Ensure proper containment */
+  box-sizing: border-box;
+}
+
+.navigation-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navigation-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.navigation-container::-webkit-scrollbar-thumb {
+  background-color: oklch(0.88 0.01 240);
+  border-radius: 3px;
+}
+
+.content-container {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  /* Clear spacing to prevent issues */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .navigation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    z-index: 50;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .content-container {
+    margin-top: 200px; /* Increased space for fixed navigation */
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .content-column {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Fix spacing for larger screens to prevent overlap */
+@media (min-width: 1024px) {
+  .main-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3rem;
+    align-items: start;
+    overflow: hidden;
+  }
+  
+  .content-container {
+    padding: 2rem;
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .navigation-container {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    max-width: 320px;
+    z-index: 10;
+    background: var(--background);
+  }
+  
+  .content-column {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.section-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  min-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+  contain: layout style;
+  position: relative;
+  z-index: 2;
+  background: var(--background);
+}
+
+.section-transition.loading {
+  opacity: 0.7;
+  transform: translateY(10px);
+}
+
+/* Ensure navigation buttons don't wrap text awkwardly */
+.navigation-button {
+  word-break: break-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.navigation-button .description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px oklch(0.25 0.15 260 / 0.1);
+  transition: all 0.2s ease-out;
+}
+
+/* Enhanced grid layout with proper constraints */
+.main-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  width: 100%;
+  align-items: start;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .main-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3rem;
+    align-items: start;
+    overflow: hidden;
+  }
+}
+
+.navigation-column {
+  width: 100%;
+  min-width: 0;
+  /* Ensure navigation is contained */
+  max-width: 100%;
+}
+
+.content-column {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced quantum gradient backgrounds for special cards - now very subtle */
+.quantum-gradient {
+  background: linear-gradient(135deg, 
+    var(--quantum-gradient-1) 0%,
+    var(--quantum-gradient-2) 25%,
+    var(--quantum-gradient-3) 75%,
+    var(--quantum-gradient-4) 100%
+  );
+  border: 1px solid oklch(0.9 0.01 260 / 0.2);
+  box-shadow: 0 2px 8px oklch(0.25 0.15 260 / 0.03);
+}
+
+.quantum-gradient-alt {
+  background: linear-gradient(45deg, 
+    oklch(0.998 0.002 240) 0%,
+    oklch(0.996 0.003 250) 20%,
+    oklch(0.995 0.004 270) 40%,
+    oklch(0.997 0.003 290) 60%,
+    oklch(0.998 0.002 310) 80%,
+    oklch(0.998 0.001 240) 100%
+  );
+  border: 1px solid oklch(0.88 0.01 260 / 0.3);
+}
+
+.research-gradient {
+  background: linear-gradient(135deg, 
+    oklch(0.998 0.002 240) 0%,
+    oklch(0.996 0.003 260) 25%,
+    oklch(0.995 0.004 280) 50%,
+    oklch(0.997 0.002 300) 75%,
+    oklch(0.998 0.001 320) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.research-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    oklch(0.25 0.15 260 / 0.005) 35%,
+    transparent 50%,
+    oklch(0.65 0.25 35 / 0.008) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: subtle-shift 40s ease-in-out infinite;
+}
+
+@keyframes subtle-shift {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  25% {
+    opacity: 0.1;
+    transform: translateX(3px) translateY(-2px) scale(1.002);
+  }
+  50% {
+    opacity: 0.25;
+    transform: translateX(-2px) translateY(3px) scale(0.998);
+  }
+  75% {
+    opacity: 0.15;
+    transform: translateX(-3px) translateY(-2px) scale(1.001);
+  }
+}
+
+/* Parameter control enhancements */
+.parameter-optimal {
+  background: linear-gradient(90deg, 
+    oklch(0.65 0.25 35 / 0.1), 
+    oklch(0.65 0.25 35 / 0.2), 
+    oklch(0.65 0.25 35 / 0.1)
+  );
+  border: 1px solid oklch(0.65 0.25 35 / 0.3);
+}
+
+/* Ensure all cards have proper containment */
+.card, [data-radix-card] {
+  overflow-x: hidden;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  /* Add clear boundaries for cards */
+  position: relative;
+  isolation: isolate;
+}
+
+/* Fix any potential layout issues with long content */
+.prose, .prose * {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  /* Ensure prose content doesn't escape containers */
+  box-sizing: border-box;
+}
+
+/* Ensure tabs content doesn't overflow */
+[data-radix-tabs-content] {
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  /* Add specific containment for tab content */
+  contain: layout;
+}
+
+/* Additional containment for complex components */
+.recharts-wrapper, .recharts-surface {
+  max-width: 100% !important;
+  overflow: hidden;
+}
+
+/* Mathematical display styling */
+.math-display {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1em;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.5rem;
+}
+
+.math-inline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05em;
+  white-space: nowrap;
+}
+
+.mathjax-context {
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.frac {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1;
+}
+
+.frac .num {
+  display: block;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.1em;
+  font-size: 0.9em;
+}
+
+.frac .den {
+  display: block;
+  padding-top: 0.1em;
+  font-size: 0.9em;
+}
+
+/* Additional mobile layout improvements */
+@media (max-width: 768px) {
+  .navigation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    z-index: 50;
+    max-height: auto;
+  }
+  
+  .content-container {
+    padding: 1rem;
+    margin-top: 200px; /* Increased space for fixed navigation */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .section-transition {
+    margin-top: 0;
+    padding: 0;
+  }
+  
+  /* Responsive mathematical content for small screens */
+  .math-display {
+    font-size: 0.9em;
+    margin: 0.5em 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  
+  .math-inline {
+    font-size: 1em;
+  }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .navigation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem;
+    z-index: 50;
+    max-height: auto;
+  }
+  
+  .content-container {
+    padding: 2rem;
+    margin-top: 200px; /* Increased space for fixed navigation */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
